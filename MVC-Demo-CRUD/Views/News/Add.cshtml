@@ -1,0 +1,37 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using MVC_Demo_CRUD.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+    <div>
+       @*@using(Html.BeginForm("","",FormMethod.Post))
+       {
+           @Html.TextBox("text")
+           @Html.TextBox("File1","",new { type="file"})
+           <input type="submit" value="提交"/>
+       }*@
+        <a href="@Url.Action("Index","News")">首页</a>
+        <form action="@Url.Action("Addinfo","News")" method="post" enctype="multipart/form-data">
+            新闻名称<input type="text" name="newsName" /><br />
+            <select name="typeid">
+                @foreach (var item in (List<NewType>)Model)
+                {
+                    <option value="@item.typeid">@item.typeName</option>
+                }
+            </select>
+            <br />
+            图片<input type="file" name="newImage"/><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+</body>
+</html>

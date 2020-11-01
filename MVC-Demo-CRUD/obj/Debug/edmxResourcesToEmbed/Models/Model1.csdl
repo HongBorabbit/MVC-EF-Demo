@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Newsinfo">
+    <Key>
+      <PropertyRef Name="newsid" />
+    </Key>
+    <Property Name="newsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="newsName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="newsType" Type="Int32" />
+    <Property Name="newImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="NewType" Relationship="Self.FK__Newsinfo__newsTy__267ABA7A" FromRole="Newsinfo" ToRole="NewType" />
+  </EntityType>
+  <EntityType Name="NewType">
+    <Key>
+      <PropertyRef Name="typeid" />
+    </Key>
+    <Property Name="typeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="typeName" Type="String" MaxLength="36" FixedLength="false" Unicode="false" />
+    <Property Name="typeIsDel" Type="Boolean" />
+    <NavigationProperty Name="Newsinfo" Relationship="Self.FK__Newsinfo__newsTy__267ABA7A" FromRole="NewType" ToRole="Newsinfo" />
+  </EntityType>
+  <Association Name="FK__Newsinfo__newsTy__267ABA7A">
+    <End Role="NewType" Type="Self.NewType" Multiplicity="0..1" />
+    <End Role="Newsinfo" Type="Self.Newsinfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewType">
+        <PropertyRef Name="typeid" />
+      </Principal>
+      <Dependent Role="Newsinfo">
+        <PropertyRef Name="newsType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRUDEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Newsinfo" EntityType="Self.Newsinfo" />
+    <EntitySet Name="NewType" EntityType="Self.NewType" />
+    <AssociationSet Name="FK__Newsinfo__newsTy__267ABA7A" Association="Self.FK__Newsinfo__newsTy__267ABA7A">
+      <End Role="NewType" EntitySet="NewType" />
+      <End Role="Newsinfo" EntitySet="Newsinfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

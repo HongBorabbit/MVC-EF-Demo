@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CRUDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Newsinfo">
+    <Key>
+      <PropertyRef Name="newsid" />
+    </Key>
+    <Property Name="newsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="newsName" Type="varchar" MaxLength="50" />
+    <Property Name="newsType" Type="int" />
+    <Property Name="newImage" Type="text" />
+  </EntityType>
+  <EntityType Name="NewType">
+    <Key>
+      <PropertyRef Name="typeid" />
+    </Key>
+    <Property Name="typeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="typeName" Type="varchar" MaxLength="36" />
+    <Property Name="typeIsDel" Type="bit" />
+  </EntityType>
+  <Association Name="FK__Newsinfo__newsTy__267ABA7A">
+    <End Role="NewType" Type="Self.NewType" Multiplicity="0..1" />
+    <End Role="Newsinfo" Type="Self.Newsinfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewType">
+        <PropertyRef Name="typeid" />
+      </Principal>
+      <Dependent Role="Newsinfo">
+        <PropertyRef Name="newsType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CRUDModelStoreContainer">
+    <EntitySet Name="Newsinfo" EntityType="Self.Newsinfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewType" EntityType="Self.NewType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Newsinfo__newsTy__267ABA7A" Association="Self.FK__Newsinfo__newsTy__267ABA7A">
+      <End Role="NewType" EntitySet="NewType" />
+      <End Role="Newsinfo" EntitySet="Newsinfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

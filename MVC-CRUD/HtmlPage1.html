@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://3gimg.qq.com/lightmap/components/geolocation/geolocation.min.js"></script>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="button" value="aa" id="btn">
+</body>
+</html>
+<script src="jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        $("#btn").click(function () {
+            var url = window.location.href;
+            console.log(url);
+          //  window.location.href = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=" + url + "&key=GOGBZ-2233I-NJUGM-5NGXA-PW5W7-JVBYT&referer=gwweb";
+
+            window.location.href = "https://apis.map.qq.com/tools/locpicker?search=1&type=0&backurl=http://localhost:5117/HtmlPage1.html&key=GOGBZ-2233I-NJUGM-5NGXA-PW5W7-JVBYT&referer=gwweb"
+        })
+
+        function UrlSearch() {
+            var name, value;
+            //var str = location.href; //取得整个地址栏
+            var str = decodeURI(location.href)  //地址栏中文参数不会乱码
+            console.log(str);
+            var num = str.indexOf("?")
+            str = str.substr(num + 1); //取得所有参数   stringvar.substr(start [, length ]
+
+            var arr = str.split("&"); //各个参数放到数组里
+            for (var i = 0; i < arr.length; i++) {
+                num = arr[i].indexOf("=");
+                if (num > 0) {
+                    name = arr[i].substring(0, num);
+                    value = arr[i].substr(num + 1);
+                    this[name] = value;
+                    console.log(arr[i]);
+                }
+            }
+        }
+        var Request = new UrlSearch(); //实例化
+        console.log(Request.addr);
+    })
+</script>

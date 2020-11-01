@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+@using MVC_Demo_CRUD.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        img{
+            max-width:40px;
+            max-height:40px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <a href="@Url.Action("Add","News")">添加</a>
+        <table border="1" style="border-style: solid;">
+            <tbody>
+                <tr>
+                    <td>编号</td>
+                    <td>名称</td>
+                    <td>类别</td>
+                    <td>图片</td>
+                    <td>操作</td>
+                </tr>
+                @foreach (var item in (List<NewInfos>)ViewBag.msg)
+                {
+                    <tr>
+                        <td>@item.newsid</td>
+                        <td>@item.newsName</td>
+                        <td id="@item.typeid">@item.typeName</td>
+                        <td><img src="http://localhost:9291/Upload/@item.newImage"/></td>
+                        <td><a href="@Url.Action("Edit","News",new {item.newsid})">编辑</a> <a href="@Url.Action("Delete","News",new { newsid=item.newsid})">删除</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+@*@model IEnumerable<MVC_Demo_CRUD.Models.Newsinfo>*@
+@using MVC_Demo_CRUD.Models;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+    <div>
+        <a href="@Url.Action("Index","News")">首页</a>
+        <form action="@Url.Action("Editinfo","News")" method="post" enctype="multipart/form-data">
+            <input name="newsid" value="@Model.newsid" type="hidden"/>
+            新闻名称<input type="text" name="newsName" value="@Model.newsName"/><br />
+                                                                            <select name="typeid">
+                                                                                @foreach (var item in (List<NewType>)ViewBag.list)
+                                                                                {
+                                                                                    //判断当前类别是否选中
+                                                                                    if (ViewBag.list2 == item.typeName)
+                                                                                    {
+                                                                                        <option value="@item.typeid" selected>@item.typeName</option>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        <option value="@item.typeid">@item.typeName</option>
+                                                                                    }
+                                                                                }
+                                                                            </select>
+            <br />
+            图片<input type="file" name="newImage" value="@Model.newImage"/><br />
+            <input type="submit" value="提交" />
+        </form>
+    </div>
+</body>
+</html>

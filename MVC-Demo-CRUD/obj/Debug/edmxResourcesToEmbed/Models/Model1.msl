@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CRUDModelStoreContainer" CdmEntityContainer="CRUDEntities">
+    <EntitySetMapping Name="Newsinfo">
+      <EntityTypeMapping TypeName="CRUDModel.Newsinfo">
+        <MappingFragment StoreEntitySet="Newsinfo">
+          <ScalarProperty Name="newsid" ColumnName="newsid" />
+          <ScalarProperty Name="newsName" ColumnName="newsName" />
+          <ScalarProperty Name="newsType" ColumnName="newsType" />
+          <ScalarProperty Name="newImage" ColumnName="newImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewType">
+      <EntityTypeMapping TypeName="CRUDModel.NewType">
+        <MappingFragment StoreEntitySet="NewType">
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+          <ScalarProperty Name="typeName" ColumnName="typeName" />
+          <ScalarProperty Name="typeIsDel" ColumnName="typeIsDel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
